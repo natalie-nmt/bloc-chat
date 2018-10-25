@@ -33,19 +33,42 @@ handleSubmit(e) {
     this.setState({ newRoomName: ''}) 
 }
 
-   render () {
+setActiveRoom(room) {
+    this.setState({activeRoom: room.key})
+};
+
+handleClick(room) {
+    this.setActiveRoom(room);
+};
+
+indicateActiveRoom(room) {
+    const activeRoom = this.state.activeRoom;
+    if (room.key === activeRoom) {
+        return <span>x</span>
+    }
+    else {
+        return <span>o</span>
+    }
+};
+
+render () {
     return <div id='roomList'>
    <form onSubmit={ (e) => this.handleSubmit(e) }>
     Room Name:<input type="text" value={ this.state.newRoomName } onChange={ (e) => this.handleChange(e) } />
     <input type='submit' value='Create Room'></input>
    </form>
-    <ul>
-      { this.state.rooms.map( ( room, index ) =>
-      <li key={index}> { room.name } </li>
-      )}
-    </ul>
+    <table>
+        <tbody>
+            {this.state.rooms.map((room, index) =>
+            <tr onClick={() => this.handleClick(room)} key={index}>
+                <td>{this.indicateActiveRoom(room, index)}</td>
+                <td>{room.name}</td>
+            </tr>
+            )}
+        </tbody>
+    </table>
     </div>
-}
+    }
 }
 
 export default RoomList;
