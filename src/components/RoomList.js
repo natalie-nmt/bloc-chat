@@ -33,17 +33,13 @@ handleSubmit(e) {
     this.setState({ newRoomName: ''}) 
 }
 
-setActiveRoom(room) {
-    this.setState({activeRoom: room.key})
-};
-
 handleClick(room) {
-    this.setActiveRoom(room);
+    this.props.setActiveRoom(room);
 };
 
 indicateActiveRoom(room) {
-    const activeRoom = this.state.activeRoom;
-    if (room.key === activeRoom) {
+    const activeRoom = this.props.activeRoom;
+    if (room === activeRoom) {
         return <span>x</span>
     }
     else {
