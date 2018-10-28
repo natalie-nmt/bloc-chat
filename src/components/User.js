@@ -24,17 +24,13 @@ class User extends Component {
 
     displayLoggedInUser(){
       const user = this.props.user;
-      if (user == null)
-        return;
-      
-      return <p>You're signed in as {user.displayName}.</p>;
+      if (user === null)
+        return <span>Click to sign in with Gmail. <button id='sign_in' onClick={() => this.handleSignIn()}>Sign In</button></span>;
+        return <span>You're signed in as {user.displayName}. <button id='sign_out' onClick={() => this.handleSignOut()}>Sign Out</button></span>
     }
 
     render () {
-      const user = this.props.user;
       return <div id='account_management'>
-      <button id='sign_in' onClick={() => this.handleSignIn()}>Sign In</button>
-      <button id='sign_out' onClick={() => this.handleSignOut()}>Sign Out</button>
       {this.displayLoggedInUser()}
       </div>
       }
