@@ -40,29 +40,26 @@ handleClick(room) {
 indicateActiveRoom(room) {
     const activeRoom = this.props.activeRoom;
     if (room === activeRoom) {
-        return <span>x</span>
+        return <li className='list-group-item active'>{room.name}</li>
     }
     else {
-        return <span>o</span>
+        return <li className='list-group-item'>{room.name}</li>
     }
 };
 
 render () {
-    return <div id='roomList'>
-   <form onSubmit={ (e) => this.handleSubmit(e) }>
-    Room Name:<input type="text" value={ this.state.newRoomName } onChange={ (e) => this.handleChange(e) } />
-    <input type='submit' value='Create Room'></input>
-   </form>
-    <table>
-        <tbody>
-            {this.state.rooms.map((room, index) =>
-            <tr onClick={() => this.handleClick(room)} key={index}>
-                <td>{this.indicateActiveRoom(room, index)}</td>
-                <td>{room.name}</td>
-            </tr>
-            )}
-        </tbody>
-    </table>
+    return <div>
+    <form onSubmit={ (e) => this.handleSubmit(e) }>
+        Room Name: <input type="text" value={this.state.newRoomName} onChange={(e) => this.handleChange(e)}/>
+        <input type='submit' className='btn btn-dark' value='Create Room'></input>
+    </form>
+    <div id='sidebar'>
+        {this.state.rooms.map((room, index) =>
+        <ul className='list-group' onClick={() => this.handleClick(room)} key={index}>
+            {this.indicateActiveRoom(room, index)}
+        </ul>
+        )}
+    </div>
     </div>
     }
 }

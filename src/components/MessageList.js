@@ -47,24 +47,22 @@ class MessageList extends Component {
         return message.roomId === activeRoomId;
       });
       return <div>
+        <table>
+            <tbody>
+                {filteredMessages.map((message, index) =>
+                <tr key={index}>
+                    <td>{message.username}</td>
+                    <td>{message.content}</td>
+                    <td>{message.sentAt}</td>
+                    <td>{message.roomId}</td>
+                </tr>
+                )}
+            </tbody>
+        </table>
       <form onSubmit={ (e) => this.handleSubmit(e) }>
-      New Message:<input type="textarea" value={this.state.newMessage} onChange={(e) => this.handleChange(e) } />
+      New Message:<input type="textarea" value={this.state.newMessage} onChange={(e) => this.handleChange(e)} />
       <input type='submit' value='Send'></input>
-     </form>
-     <div>
-     <table>
-        <tbody>
-            {filteredMessages.map((message, index) =>
-            <tr key={index}>
-                <td>{message.username}</td>
-                <td>{message.content}</td>
-                <td>{message.sentAt}</td>
-                <td>{message.roomId}</td>
-            </tr>
-            )}
-        </tbody>
-    </table>
-     </div>
+      </form>
       </div>
     }
   }

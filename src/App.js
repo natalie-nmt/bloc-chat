@@ -28,7 +28,7 @@ class App extends Component {
 
   showMessageList(){
     if (this.state.activeRoom != null)
-    return <div>
+    return <div className='navbar navbar-expand-lg navbar-light bg-light'>
     <MessageList 
       firebase={firebase}
       activeRoom={this.state.activeRoom}
