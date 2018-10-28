@@ -27,8 +27,6 @@ class MessageList extends Component {
     handleSubmit(e) {
       e.preventDefault();
       if (!this.state.newMessage) { return }
-      const newMessage = this.state.newMessage;
-      const activeRoom = this.props.activeRoom;
       var currentdate = new Date(); 
       var timestamp = "Posted on " + (currentdate.getMonth()+1)  + "/"
           + currentdate.getDate() + "/"
@@ -36,39 +34,39 @@ class MessageList extends Component {
           + currentdate.getHours() + ":"  
           + currentdate.getMinutes()
       this.messagesRef.push({
-          content: newMessage,
-          roomId: activeRoom.key, 
+          content: this.state.newMessage,
+          roomId: this.props.activeRoom.key, 
           sentAt: timestamp, 
-          username: 'username'});
+          username: this.props.user.displayName});
       this.setState({ newMessage: ''})
     }
 
-  render () {
-    const activeRoomId = this.props.activeRoom.key;
-    const filteredMessages = this.state.messages.filter(function (message) {
-      return message.roomId === activeRoomId;
-    });
-    return <div>
-    <form onSubmit={ (e) => this.handleSubmit(e) }>
-    New Message:<input type="textarea" value={this.state.newMessage} onChange={(e) => this.handleChange(e) } />
-    <input type='submit' value='Send'></input>
-   </form>
-   <div>
-   <table>
-      <tbody>
-          {filteredMessages.map((message, index) =>
-          <tr key={index}>
-              <td>{message.username}</td>
-              <td>{message.content}</td>
-              <td>{message.sentAt}</td>
-              <td>{message.roomId}</td>
-          </tr>
-          )}
-      </tbody>
-  </table>
-   </div>
-    </div>
+    render () {
+      const activeRoomId = this.props.activeRoom.key;
+      const filteredMessages = this.state.messages.filter(function (message) {
+        return message.roomId === activeRoomId;
+      });
+      return <div>
+      <form onSubmit={ (e) => this.handleSubmit(e) }>
+      New Message:<input type="textarea" value={this.state.newMessage} onChange={(e) => this.handleChange(e) } />
+      <input type='submit' value='Send'></input>
+     </form>
+     <div>
+     <table>
+        <tbody>
+            {filteredMessages.map((message, index) =>
+            <tr key={index}>
+                <td>{message.username}</td>
+                <td>{message.content}</td>
+                <td>{message.sentAt}</td>
+                <td>{message.roomId}</td>
+            </tr>
+            )}
+        </tbody>
+    </table>
+     </div>
+      </div>
+    }
   }
-}
 
 export default MessageList;

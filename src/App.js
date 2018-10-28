@@ -31,13 +31,14 @@ class App extends Component {
     return <div>
     <MessageList 
       firebase={firebase}
-      activeRoom={this.state.activeRoom}/>
+      activeRoom={this.state.activeRoom}
+      user={this.state.user}/>
     </div>
   }
 
   render() {
     const setActiveRoom = (room) => this.setState({activeRoom: room});
-    const setUser = (user) =>this.setState({user: user});
+    const setUser = (user) => this.setState({user: user});
     return (
       <div className="App">
       <User 
