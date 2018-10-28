@@ -26,15 +26,6 @@ class App extends Component {
   };
   }
 
-/*   setActiveRoom(room) {
-    this.setState({activeRoom: room})
-}; */
-
-  /* setUser(user) {
-    console.log("SetUser is working!")
-    // Also include displayName in here? Depends if username/displayName is the same thing...
-  } */
-
   showMessageList(){
     if (this.state.activeRoom != null)
     return <div>
@@ -43,20 +34,22 @@ class App extends Component {
       activeRoom={this.state.activeRoom}/>
     </div>
   }
- 
+
   render() {
     const setActiveRoom = (room) => this.setState({activeRoom: room});
+    const setUser = (user) =>this.setState({user: user});
     return (
       <div className="App">
       <User 
         firebase={firebase}
-        setUser={this.setUser}
+        setUser={setUser}
         user={this.state.user}
       />
       <RoomList 
         firebase={firebase}
         activeRoom={this.state.activeRoom}
-        setActiveRoom={setActiveRoom}/>
+        setActiveRoom={setActiveRoom}
+      />
         {this.showMessageList()}
       </div>
     );

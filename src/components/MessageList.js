@@ -35,7 +35,11 @@ class MessageList extends Component {
           + currentdate.getFullYear() + " @ "  
           + currentdate.getHours() + ":"  
           + currentdate.getMinutes()
-      this.messagesRef.push({content: newMessage, roomId: activeRoom.key, sentAt: timestamp, username: 'username'});
+      this.messagesRef.push({
+          content: newMessage,
+          roomId: activeRoom.key, 
+          sentAt: timestamp, 
+          username: 'username'});
       this.setState({ newMessage: ''})
     }
 
