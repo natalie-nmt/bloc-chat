@@ -28,7 +28,7 @@ class App extends Component {
 
   showMessageList(){
     if (this.state.activeRoom != null)
-    return <div className='navbar navbar-expand-lg navbar-light bg-light'>
+    return <div>
     <MessageList 
       firebase={firebase}
       activeRoom={this.state.activeRoom}
@@ -41,11 +41,15 @@ class App extends Component {
     const setUser = (user) => this.setState({user: user});
     return (
       <div className="App">
+      <nav className='navbar navbar-expand-lg navbar-light bg-light'>
       <User 
         firebase={firebase}
         setUser={setUser}
         user={this.state.user}
       />
+      </nav>
+      <h1>Welcome to Bloc Chat!</h1>
+      <p>Sign in and click a room below to get started. Don't see a topic you like? Try creating your own room, instead!</p>
       <RoomList 
         firebase={firebase}
         activeRoom={this.state.activeRoom}

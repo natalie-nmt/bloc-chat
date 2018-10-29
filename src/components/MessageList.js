@@ -46,22 +46,21 @@ class MessageList extends Component {
       const filteredMessages = this.state.messages.filter(function (message) {
         return message.roomId === activeRoomId;
       });
-      return <div>
-        <table>
+      return <div id='messageListDiv'>
+        <table id='messageList'>
             <tbody>
                 {filteredMessages.map((message, index) =>
-                <tr key={index}>
-                    <td>{message.username}</td>
-                    <td>{message.content}</td>
-                    <td>{message.sentAt}</td>
-                    <td>{message.roomId}</td>
+                <tr className='message' key={index}>
+                    <td className='messageUsername'>{message.username}</td>
+                    <td className='messageContent'>{message.content}</td>
+                    <td className='messageTimestamp'>{message.sentAt}</td>
                 </tr>
                 )}
             </tbody>
         </table>
-      <form onSubmit={ (e) => this.handleSubmit(e) }>
-      New Message:<input type="textarea" value={this.state.newMessage} onChange={(e) => this.handleChange(e)} />
-      <input type='submit' value='Send'></input>
+      <form id='submitMessage' onSubmit={ (e) => this.handleSubmit(e) }>
+      New Message: <input id='textarea' type='textarea' value={this.state.newMessage} onChange={(e) => this.handleChange(e)} />
+      <input className='btn btn-dark' type='submit' value='Send'></input>
       </form>
       </div>
     }

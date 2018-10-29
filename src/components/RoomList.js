@@ -49,10 +49,6 @@ indicateActiveRoom(room) {
 
 render () {
     return <div>
-    <form onSubmit={ (e) => this.handleSubmit(e) }>
-        Room Name: <input type="text" value={this.state.newRoomName} onChange={(e) => this.handleChange(e)}/>
-        <input type='submit' className='btn btn-dark' value='Create Room'></input>
-    </form>
     <div id='sidebar'>
         {this.state.rooms.map((room, index) =>
         <ul className='list-group' onClick={() => this.handleClick(room)} key={index}>
@@ -60,6 +56,11 @@ render () {
         </ul>
         )}
     </div>
+    <form onSubmit={ (e) => this.handleSubmit(e) }>
+        <div id='createRoom'>Room Name: <input type="text" value={this.state.newRoomName} onChange={(e) => this.handleChange(e)}/>
+            <input type='submit' className='btn btn-dark' value='Create Room'></input>
+        </div>
+    </form>
     </div>
     }
 }
