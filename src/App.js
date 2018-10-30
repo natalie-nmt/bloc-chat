@@ -36,15 +36,21 @@ class App extends Component {
     </div>
   }
 
+  setActiveRoom(room){
+    this.setState({activeRoom:room})
+  }
+
+  setUser(user) {
+    this.setState({user: user})
+  }
+
   render() {
-    const setActiveRoom = (room) => this.setState({activeRoom: room});
-    const setUser = (user) => this.setState({user: user});
     return (
       <div className="App">
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
       <User 
         firebase={firebase}
-        setUser={setUser}
+        setUser={this.setUser.bind(this)}
         user={this.state.user}
       />
       </nav>
@@ -53,7 +59,7 @@ class App extends Component {
       <RoomList 
         firebase={firebase}
         activeRoom={this.state.activeRoom}
-        setActiveRoom={setActiveRoom}
+        setActiveRoom={this.setActiveRoom.bind(this)}
       />
         {this.showMessageList()}
       </div>
