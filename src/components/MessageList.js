@@ -37,9 +37,12 @@ class MessageList extends Component {
           content: this.state.newMessage,
           roomId: this.props.activeRoom.key, 
           sentAt: timestamp, 
-          username: this.props.user.displayName});
+          username: this.props.postAsUser(),
+        });
       this.setState({ newMessage: ''})
     }
+
+//changed the above handleSubmit to try to accommodate guests posting without breaking the site. Added function postAsUser in App.js. 
 
     render () {
       const activeRoomId = this.props.activeRoom.key;

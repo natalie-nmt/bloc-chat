@@ -22,7 +22,7 @@ class App extends Component {
   super(props);
   this.state = {
     activeRoom: null,
-    user: null,
+    user: null
   };
   }
 
@@ -32,7 +32,9 @@ class App extends Component {
     <MessageList 
       firebase={firebase}
       activeRoom={this.state.activeRoom}
-      user={this.state.user}/>
+      user={this.state.user}
+      postAsUser={this.postAsUser.bind(this)}
+      />
     </div>
   }
 
@@ -42,6 +44,16 @@ class App extends Component {
 
   setUser(user) {
     this.setState({user: user})
+  }
+
+  postAsUser() {
+    const user = this.state.user
+    if (user !== null) {
+      return user.displayName;
+    }
+    else {
+      return 'Guest';
+    }
   }
 
   render() {

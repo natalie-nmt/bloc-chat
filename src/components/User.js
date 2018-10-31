@@ -22,6 +22,8 @@ class User extends Component {
       this.props.firebase.auth().signOut();
     }
 
+
+
     displayLoggedInUser(){
       const user = this.props.user;
       if (user === null) {
