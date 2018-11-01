@@ -51,9 +51,7 @@ class App extends Component {
     if (user !== null) {
       return user.displayName;
     }
-    else {
       return 'Guest';
-    }
   }
 
   render() {
